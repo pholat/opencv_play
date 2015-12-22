@@ -51,9 +51,12 @@ while True:
     # bothimages[:][frame.shape[1]:][:] = frame[:][:][:]
     # edges[:][:],[0]
     edges = np.expand_dims(edges,2)
-    edges = np.resize(edges, (edges.shape[0], edges.shape[1],3))
-    edges = np.hstack((frame,edges))
-    print edges.shape
+    # edges = np.resize(edges, (edges.shape[0], edges.shape[1],3))
+    ed = np.dstack((edges,edges))
+    edges = np.dstack((ed,edges))
+    edges = np.hstack((edges,frame))
+    # print edges.shape
+
     cv2.imshow('edge', edges )
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
